@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@300;400;600;700&display=swap');
+@import "./App.css";
+
+:root {
+  /* Brand Palette: Rose and Roots (Cherry Blossom & Lavender coordinate) */
+  --color-primary: #e88d9f;      /* Soft Cherry Blossom Pink */
+  --color-secondary: #f9c5d1;    /* Pastel Blush Pink */
+  --color-tertiary: #d8c8f0;     /* Creamy Pastel Lavender */
+  --color-background: #faf5f0;   /* Warm Soft Cream */
+  --color-surface: #ffffff;      /* Pure White Surface */
+  
+  /* Text Colors (Mauve-toned for soft contrast) */
+  --text-main: #5a4d53;          /* Soft Charcoal Mauve */
+  --text-heading: #3a2d33;       /* Dark Mauve Slate */
+  --text-muted: #9a8b92;         /* Muted Soft Gray */
+  
+  /* Borders & UI */
+  --border-light: #fcf2f4;
+  --border-medium: #f3d9df;
+  --shadow-soft: 0 10px 30px rgba(232, 141, 159, 0.05);
+  --shadow-hover: 0 16px 40px rgba(232, 141, 159, 0.12);
+
+  /* Fonts */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Nunito', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-heading);
+  margin-top: 0;
+  font-weight: 600;
+}
+
+p {
+  line-height: 1.6;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--text-heading);
+}
+
+button {
+  font-family: var(--font-body);
+}
+
+/* Base App Layout */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
