@@ -115,7 +115,7 @@ async function seed() {
     // Seed admin config if not exists
     await Admin.deleteMany({});
     await Admin.create({
-      banner: "Welcome to Rose and Roots. Your premium makeup & beauty destination.",
+      banner: "Welcome to ShopEZ. Your premium makeup & beauty destination.",
       categories: ["Face", "Skincare", "Sets", "Tools", "Lips", "Eyes"]
     });
     console.log("✅ Admin config seeded");

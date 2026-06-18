@@ -147,9 +147,10 @@ function Navbar() {
       <div style={{ display: "flex", flexDirection: "column", flexShrink: 0 }}>
         <Link to="/" style={{ color: "var(--color-primary)", textDecoration: "none" }}>
           <h2 style={{ margin: 0, fontFamily: "var(--font-heading)", fontSize: "28px", letterSpacing: "0.5px" }}>
-            Rose and Roots
+            ShopEZ
           </h2>
         </Link>
+
         <p style={{ margin: 0, fontSize: "12px", color: "var(--text-muted)", marginTop: "-2px", letterSpacing: "1px", textTransform: "uppercase" }}>
           Premium Makeup & Skincare
         </p>

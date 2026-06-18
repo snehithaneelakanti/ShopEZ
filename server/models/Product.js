@@ -89,7 +89,9 @@ productSchema.pre("validate", function (next) {
   if (this.originalPrice && this.price && !this.discount) {
     this.discount = Math.max(0, this.originalPrice - this.price);
   }
-  next();
+  if (typeof next === 'function') {
+    next();
+  }
 });
 
 const Product = mongoose.model("products", productSchema);
