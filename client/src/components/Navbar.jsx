@@ -128,6 +128,7 @@ function Navbar() {
 
   return (
     <nav
+      className="navbar"
       style={{
         display: "flex",
         justifyContent: "space-between",
@@ -143,7 +144,7 @@ function Navbar() {
       }}
     >
       {/* Brand Logo */}
-      <div style={{ display: "flex", flexDirection: "column" }}>
+      <div style={{ display: "flex", flexDirection: "column", flexShrink: 0 }}>
         <Link to="/" style={{ color: "var(--color-primary)", textDecoration: "none" }}>
           <h2 style={{ margin: 0, fontFamily: "var(--font-heading)", fontSize: "28px", letterSpacing: "0.5px" }}>
             Rose and Roots
@@ -159,7 +160,9 @@ function Navbar() {
         onSubmit={handleSearchSubmit}
         style={{
           position: "relative",
-          width: "280px",
+          flex: "1 1 auto",
+          maxWidth: "280px",
+          minWidth: "140px",
           margin: "0 20px"
         }}
       >
@@ -202,7 +205,7 @@ function Navbar() {
       </form>
 
       {/* Navigation Links Row */}
-      <div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "24px", flexShrink: 0 }}>
         <Link to="/" style={linkStyle}>
           <Home size={18} /> Home
         </Link>

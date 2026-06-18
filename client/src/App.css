@@ -333,14 +333,16 @@
     padding: 16px !important;
     gap: 16px !important;
   }
+  .navbar form {
+    margin: 8px 0 !important;
+    width: 100% !important;
+    max-width: 280px !important;
+  }
   .navbar > div {
     justify-content: center !important;
     width: 100% !important;
     flex-wrap: wrap;
     gap: 12px;
-  }
-  .navbar a {
-    margin-right: 12px !important;
   }
   .carousel-image {
     height: 200px;
