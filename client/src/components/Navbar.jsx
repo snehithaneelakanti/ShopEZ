@@ -1,11 +1,31 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { ShoppingCart, User, LogOut, Settings, Home, Package } from "lucide-react";
+import { ShoppingCart, User, LogOut, Settings, Home, Package, Search } from "lucide-react";
 
 function Navbar() {
   const [user, setUser] = useState(null);
   const [cartCount, setCartCount] = useState(0);
   const navigate = useNavigate();
+  const [navSearch, setNavSearch] = useState("");
+  const location = useLocation();
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (navSearch.trim()) {
+      navigate(`/products?search=${encodeURIComponent(navSearch.trim())}`);
+    } else {
+      navigate("/products");
+    }
+  };
+
+  useEffect(() => {
+    if (location.pathname === "/products") {
+      const params = new URLSearchParams(location.search);
+      setNavSearch(params.get("search") || "");
+    } else {
+      setNavSearch("");
+    }
+  }, [location.search, location.pathname]);
 
   const fetchCartCount = async (userId) => {
     try {
@@ -99,7 +119,6 @@ function Navbar() {
   const linkStyle = {
     color: "var(--text-heading)",
     textDecoration: "none",
-    marginRight: "24px",
     display: "flex",
     alignItems: "center",
     gap: "6px",
@@ -119,9 +138,11 @@ function Navbar() {
         position: "sticky",
         top: 0,
         zIndex: 100,
-        boxShadow: "0 2px 10px rgba(183, 110, 121, 0.05)"
+        boxShadow: "0 2px 10px rgba(183, 110, 121, 0.05)",
+        boxSizing: "border-box"
       }}
     >
+      {/* Brand Logo */}
       <div style={{ display: "flex", flexDirection: "column" }}>
         <Link to="/" style={{ color: "var(--color-primary)", textDecoration: "none" }}>
           <h2 style={{ margin: 0, fontFamily: "var(--font-heading)", fontSize: "28px", letterSpacing: "0.5px" }}>
@@ -133,7 +154,55 @@ function Navbar() {
         </p>
       </div>
 
-      <div style={{ display: "flex", alignItems: "center" }}>
+      {/* Search Bar */}
+      <form
+        onSubmit={handleSearchSubmit}
+        style={{
+          position: "relative",
+          width: "280px",
+          margin: "0 20px"
+        }}
+      >
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={navSearch}
+          onChange={(e) => setNavSearch(e.target.value)}
+          style={{
+            width: "100%",
+            padding: "8px 16px 8px 36px",
+            borderRadius: "20px",
+            border: "1px solid var(--border-medium)",
+            backgroundColor: "var(--color-background)",
+            color: "var(--text-heading)",
+            fontSize: "14px",
+            outline: "none",
+            transition: "all 0.2s ease"
+          }}
+          onFocus={(e) => {
+            e.target.style.borderColor = "var(--color-primary)";
+            e.target.style.boxShadow = "0 0 0 2px rgba(183, 110, 121, 0.1)";
+          }}
+          onBlur={(e) => {
+            e.target.style.borderColor = "var(--border-medium)";
+            e.target.style.boxShadow = "none";
+          }}
+        />
+        <Search
+          size={16}
+          style={{
+            position: "absolute",
+            left: "12px",
+            top: "50%",
+            transform: "translateY(-50%)",
+            color: "var(--text-muted)",
+            pointerEvents: "none"
+          }}
+        />
+      </form>
+
+      {/* Navigation Links Row */}
+      <div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
         <Link to="/" style={linkStyle}>
           <Home size={18} /> Home
         </Link>

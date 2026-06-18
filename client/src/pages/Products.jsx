@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Search, SlidersHorizontal, ShoppingCart, CreditCard } from "lucide-react";
 
 function Products() {
@@ -12,9 +12,10 @@ function Products() {
   const [categories, setCategories] = useState(["All"]);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(location.search);
     const searchParam = params.get("search") || "";
     const categoryParam = params.get("category") || "All";
 
@@ -23,7 +24,7 @@ function Products() {
 
     fetchProducts(searchParam, categoryParam);
     fetchCategories();
-  }, []);
+  }, [location.search]);
 
   const fetchCategories = async () => {
     try {
